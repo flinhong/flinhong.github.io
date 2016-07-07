@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorator (0.1)
+    cssminify (1.0.2)
+    execjs (2.7.0)
     ffi (1.9.13)
     htmlcompressor (0.3.0)
     jekyll (3.1.6)
@@ -14,15 +16,17 @@ GEM
       rouge (~> 1.7)
       safe_yaml (~> 1.0)
     jekyll-feed (0.5.1)
-    jekyll-minifier (0.0.6)
-      htmlcompressor (~> 0.3.0)
-      jekyll (>= 3.0.0)
-      yui-compressor (~> 0.12)
+    jekyll-minifier (0.0.7)
+      cssminify (~> 1.0)
+      htmlcompressor (~> 0.3)
+      jekyll (~> 3.0)
+      uglifier (~> 2.7)
     jekyll-paginate (1.1.0)
     jekyll-sass-converter (1.4.0)
       sass (~> 3.4)
     jekyll-watch (1.4.0)
       listen (~> 3.0, < 3.1)
+    json (2.0.1)
     kramdown (1.11.1)
     liquid (3.0.6)
     listen (3.0.8)
@@ -35,7 +39,9 @@ GEM
     rouge (1.11.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    yui-compressor (0.12.0)
+    uglifier (2.7.2)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
 
 PLATFORMS
   ruby
