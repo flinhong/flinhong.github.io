@@ -15,7 +15,7 @@ GEM
       mercenary (~> 0.3.3)
       rouge (~> 1.7)
       safe_yaml (~> 1.0)
-    jekyll-feed (0.5.1)
+    jekyll-feed (0.6.0)
     jekyll-minifier (0.0.7)
       cssminify (~> 1.0)
       htmlcompressor (~> 0.3)
