@@ -4,7 +4,7 @@ GEM
     colorator (0.1)
     cssminify (1.0.2)
     execjs (2.7.0)
-    ffi (1.9.13)
+    ffi (1.9.14)
     htmlcompressor (0.3.0)
     jekyll (3.1.6)
       colorator (~> 0.1)
