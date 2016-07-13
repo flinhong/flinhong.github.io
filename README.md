@@ -14,7 +14,7 @@ Since I am learning things to make my blog more reliable, the site will keep upd
 
 This theme is mainly built for my own use, and contains all my assets that include the posts' orginal content. If you're really interested in this blog theme, *please please* delete the original `_posts` folder before its deployed online.
 
-By the way, the original Jekyll files are included in the [blog repo](https://github.com/flinhong/blog), under [deploy branch](https://github.com/flinhong/blog/tree/deploy). You can fork it to build your own fancy blog. And please replace the **Google Analytics**, **Disqus** and **AddThis** scripts in `_includes` > `scripts.html` and `_includes` > `comments.html` files.
+By the way, the original Jekyll files are included in the [blog repo](https://github.com/flinhong/blog), under [deploy branch](https://github.com/flinhong/blog/tree/deploy). You can fork it to build your own fancy blog. And please replace the **Google Analytics**, **Disqus** and **AddThis** scripts in `_includes` > `scripts.html` and `_includes` > `comments.html` files. If possible, leave a link to [my homepage](https://www.flinhong.com/) on your site would be better 😘.
 
 If you have any questions on using it, you can [leave me a message](https://www.flinhong.com/contact/#message) for discussion 😉.
 
