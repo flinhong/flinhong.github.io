@@ -8,7 +8,7 @@ By now, this blog is hosing on Google Firebase with a free SSL. You can visit th
 
 This blog is running with Travis docker, please find the building status below.
 
-[![Build Status](https://travis-ci.org/flinhong/blog.svg?branch=deploy)](https://travis-ci.org/flinhong/blog)
+[![Build Status](https://travis-ci.org/flinhong/flinhong.github.io.svg?branch=jekyll)](https://travis-ci.org/flinhong/flinhong.github.io)
 
 Since I'm going to update my site, this living site you visited at [flinhong.github.io](https://flinhong.github.io) will no longer update. But you can use it if you like, steps as below.
 
@@ -16,7 +16,7 @@ If you have any questions, you can [leave me a message](https://flinhong.github.
 
 ## Theme Usage
 
-For using of this theme, please fork the original Jekyll sources via my blog repo: [https://github.com/flinhong/blog.git](https://github.com/flinhong/blog.git). It's under the deploy branch.
+For using of this theme, please fork the original Jekyll sources under [Jekyll branch](https://github.com/flinhong/flinhong.github.io/tree/jekyll).
 
 Of course, the documentary for this theme is not well developed. So, [drop me a line](https://flinhong.github.io/contact/#message) for discussion if any.
 
