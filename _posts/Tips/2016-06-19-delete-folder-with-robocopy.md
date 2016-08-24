@@ -23,10 +23,10 @@ toc: false
 
 假设要删除的文件夹是 `D:\folder-to-delete`，那么可以先在 D 盘下新建一个空文件夹 `D:\empty-folder`。
 
-然后再命令提示符中输入：
+然后再在命令提示符中输入：
 
-```
+```bash
 robocopy /MIR D:\empty-folder D:\folder-to-delete
 ```
 
-这样就把文件夹 `D:\folder-to-delete` 复制成与 `D:\empty-folder` 一样的空文件夹了，既删除了想要删掉的路径太长的文件。
+这样就把文件夹 `D:\folder-to-delete` 复制成与 `D:\empty-folder` 一样的空文件夹了，就这么简单删除了想要删掉的路径太长的文件。
