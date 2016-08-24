@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+{% include head.html %}
+<body class="no-slider">
+<!-- <body class="has-top-menu"> -->
+  <!-- BEGIN #slider-imgs -->
+  <div id="slider-imgs">
+    <div class="featured-img-box">
+      <div id="featured-img-1" class="featured-img"></div>
+      <div id="featured-img-2" class="featured-img invisible"></div>
+      <div id="featured-img-3" class="featured-img invisible"></div>
+      <div id="featured-img-4" class="featured-img invisible"></div>
+    </div>
+  <!-- END #slider-imgs -->
+  </div>
+  <!-- BEGIN #top-layer -->
+  <div id="top-layer">
+  {% include head-top.html %}
+  <section id="content">
+    {% include header-info.html %}
+    <div id="main-box" class="full-width">
+      <!-- BEGIN #main -->
+      <div id="main">
+        {% include profile.html %}
+      </div>
+      <div class="clear-float"></div>
+    </div>
+  </section>
+  </div>
+  <div class="clear-float"></div>
+  {% include footer.html %}
+  {% include scripts.html %}
+</body>
+</html>

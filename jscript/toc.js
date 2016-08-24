@@ -1,1 +1,89 @@
-!function(e){e.fn.toc=function(n){function o(e){return encodeURIComponent(e).replace(/[!'()*]/g,function(e){return"%"+e.charCodeAt(0).toString(16)})}var t={noBackToTopLinks:!1,title:'<h1 class="widget-title">Table of Contents</h1>',minimumHeaders:2,headers:"h1, h2, h3, h4, h5, h6",listType:"ol",showEffect:"slideDown",showSpeed:"slow"},s=e.extend(t,n),h=e(s.headers).filter(function(){var i=e(this).prev().attr("name");return!this.id&&i&&(this.id=e(this).attr("id",i.replace(/\./g,"-"))),this.id}),a=e(this);if(!h.length||h.length<s.minimumHeaders||!a.length)return void e(this).hide();0===s.showSpeed&&(s.showEffect="none");var r,l={show:function(){a.hide().html(u).show(s.showSpeed)},slideDown:function(){a.hide().html(u).slideDown(s.showSpeed)},fadeIn:function(){a.hide().html(u).fadeIn(s.showSpeed)},none:function(){a.html(u)}},c=function(e){return parseInt(e.nodeName.replace("H",""),10)},d=h.map(function(e,i){return c(i)}).get().sort()[0],f='<i class="icon-arrow-up back-to-top"> </i>',p=c(h[0]),u="<"+s.listType+">";h.on("click",function(){s.noBackToTopLinks||(window.location.hash=this.id)}).addClass("clickable-header").each(function(n,t){if(r=c(t),s.noBackToTopLinks||r!==d||e(t).addClass("top-level-header").after(f),r===p)u+="<li><a href='#"+o(t.id)+"'>"+t.innerHTML+"</a>";else if(p>=r){for(i=r;i<p;i++)u+="</li></"+s.listType+">";u+="<li><a href='#"+o(t.id)+"'>"+t.innerHTML+"</a>"}else if(r>p){for(i=r;i>p;i--)u+="<"+s.listType+"><li>";u+="<a href='#"+o(t.id)+"'>"+t.innerHTML+"</a>"}p=r}),u+="</"+s.listType+">",s.noBackToTopLinks||e(document).on("click",".back-to-top",function(){e(window).scrollTop(0),window.location.hash=""}),l[s.showEffect]()}}(jQuery);
+// https://github.com/ghiculescu/jekyll-table-of-contents
+(function($){
+  $.fn.toc = function(options) {
+    var defaults = {
+      noBackToTopLinks: false,
+      title: '<h1 class="widget-title">Table of Contents</h1>',
+      minimumHeaders: 2,
+      headers: 'h1, h2, h3, h4, h5, h6',
+      listType: 'ol', // values: [ol|ul]
+      showEffect: 'slideDown', // values: [show|slideDown|fadeIn|none]
+      showSpeed: 'slow' // set to 0 to deactivate effect
+    },
+    settings = $.extend(defaults, options);
+
+    function fixedEncodeURIComponent (str) {
+      return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+        return '%' + c.charCodeAt(0).toString(16);
+      });
+    }
+
+    var headers = $(settings.headers).filter(function() {
+      // get all headers with an ID
+      var previousSiblingName = $(this).prev().attr( "name" );
+      if (!this.id && previousSiblingName) {
+        this.id = $(this).attr( "id", previousSiblingName.replace(/\./g, "-") );
+      }
+      return this.id;
+    }), output = $(this);
+    if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
+      $(this).hide();
+      return;
+    }
+
+    if (0 === settings.showSpeed) {
+      settings.showEffect = 'none';
+    }
+
+    var render = {
+      show: function() { output.hide().html(html).show(settings.showSpeed); },
+      slideDown: function() { output.hide().html(html).slideDown(settings.showSpeed); },
+      fadeIn: function() { output.hide().html(html).fadeIn(settings.showSpeed); },
+      none: function() { output.html(html); }
+    };
+
+    var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
+    var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
+    var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
+
+    var level = get_level(headers[0]),
+      this_level,
+      html = "<" + settings.listType + ">";
+    headers.on('click', function() {
+      if (!settings.noBackToTopLinks) {
+        window.location.hash = this.id;
+      }
+    })
+    .addClass('clickable-header')
+    .each(function(_, header) {
+      this_level = get_level(header);
+      if (!settings.noBackToTopLinks && this_level === highest_level) {
+        $(header).addClass('top-level-header').after(return_to_top);
+      }
+      if (this_level === level) // same level as before; same indenting
+        html += "<li><a href='#" + fixedEncodeURIComponent(header.id) + "'>" + header.innerHTML + "</a>";
+      else if (this_level <= level){ // higher level than before; end parent ol
+        for(i = this_level; i < level; i++) {
+          html += "</li></"+settings.listType+">"
+        }
+        html += "<li><a href='#" + fixedEncodeURIComponent(header.id) + "'>" + header.innerHTML + "</a>";
+      }
+      else if (this_level > level) { // lower level than before; expand the previous to contain a ol
+        for(i = this_level; i > level; i--) {
+          html += "<"+settings.listType+"><li>"
+        }
+        html += "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + header.innerHTML + "</a>";
+      }
+      level = this_level; // update for the next one
+    });
+    html += "</"+settings.listType+">";
+    if (!settings.noBackToTopLinks) {
+      $(document).on('click', '.back-to-top', function() {
+        $(window).scrollTop(0);
+        window.location.hash = '';
+      });
+    }
+
+    render[settings.showEffect]();
+  };
+})(jQuery);

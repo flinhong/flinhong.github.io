@@ -1,0 +1,110 @@
+
+<head>
+  <meta charset="utf-8" />
+  {% if page.layout == 'blog' %}
+  <title>Frank's Blog</title>
+  {% else %}
+  <title>{{ page.title }}</title>
+  {% endif %}
+  <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link rel="canonical" href="{{ page.url | prepend: site.url }}" />
+  <meta name="author" content="Frank Lin">
+  {% if page.layout == 'post' %}
+  <meta name="description" content="{{ page.description }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <html itemscope itemtype="http://schema.org/Article" />
+  <meta itemprop="name" content="{{ page.title }}" />
+  <meta itemprop="description" content="{{ page.description }}" />
+  {% if page.image %}
+  <meta property="og:image" content="{{ page.image }}" />
+  <meta itemprop="image" content="{{ page.image }}" />
+  {% endif %}
+  {% else %}
+  <meta name="description" content="{{ site.description }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ site.description }}" />
+  {% endif %}
+  <meta property="og:url" content="{{ page.url | prepend: site.url }}" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta name="google-site-verification" content="HXPDAWYIepFJGNogMyAiitfbS7Y1qch0g48wPNEcWe4" />
+  <meta property="wb:webmaster" content="791d633f159e2187" />
+  <meta baidu-gxt-verify-token="71873380879135aeb44e80d9104ecad1" />
+  <meta name="baidu-site-verification" content="UMxw5uvDqa" />
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+  <link rel="icon" type="image/png" href="/assets/images/android-chrome-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon-180x180.png" />
+  <link rel="stylesheet" type="text/css" href="/css/reset.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/css/dat-menu.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/css/main-stylesheet.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/css/responsive.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Lato:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
+  <!--[if lt IE 9 ]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  {% if page.layout == "post" %}
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1566440393658978',
+        xfbml      : true,
+        version    : 'v2.7'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+  {% endif %}
+  {% if page.layout == 'homepage' %}
+  <style>
+    #featured-img-1 {
+      background-image: url(/assets/images/me.jpg);
+    }
+    {% for post in site.posts limit:1 %}
+    {% if post.image %}
+    #featured-img-2 {
+      background-image: url({{ post.image }});
+    }
+    {% else %}
+    #featured-img-2 {
+      background-image: url(/assets/images/replace-1.jpg);
+    }
+    {% endif %}
+    {% endfor %}
+    {% for post in site.posts offset:1 limit:1 %}
+    {% if post.image %}
+    #featured-img-3 {
+      background-image: url({{ post.image }});
+    }
+    {% else %}
+    #featured-img-3 {
+      background-image: url(/assets/images/replace-2.jpg);
+    }
+    {% endif %}
+    {% endfor %}
+    {% for post in site.posts offset:2 limit:1 %}
+    {% if post.image %}
+    #featured-img-4 {
+      background-image: url({{ post.image }});
+    }
+    {% else %}
+    #featured-img-4 {
+      background-image: url(/assets/images/replace-3.jpg);
+    }
+    {% endif %}
+    {% endfor %}
+  </style>
+  {% endif %}
+</head>

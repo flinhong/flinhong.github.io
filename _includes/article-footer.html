@@ -1,0 +1,96 @@
+
+{% include share.html %}
+
+<!-- BEGIN .article-footer -->
+<div class="article-footer">
+	<div class="about-author">
+		<h2><span>About</span></h2>
+		<div class="inner" itemscope itemtype="http://schema.org/Person">
+			<a href="{{ site.url }}/about/" class="avatar avatar-large user-tooltip" itemprop="url">
+				<img src="/assets/images/avatar.jpg" alt="Avatar" class="author-image setborder" itemprop="image"/>
+			</a>
+			<div class="side">
+				<div class="about-head">
+					<a href="{{ site.url }}/about/" class="comment-user user-tooltip"><b itemprop="name">{{ site.author }}</b></a>
+				</div>
+				<i>林宏</i>
+				<div class="fb-follow" data-href="https://www.facebook.com/flinhong" data-layout="button_count" data-size="small" data-show-faces="true"></div>
+				<a class="twitter-follow-button"
+					href="https://twitter.com/flinhong"
+					data-size="small" data-show-screen-name="false" data-show-count="false">
+				Follow @flinhong</a>
+			</div>
+			<p>{{ site.description }}</p>
+		</div>
+	</div>
+	<div class="similar-posts">
+		<h2><span>Related Posts</span></h2>
+		<div class="home-article right">
+			<ul>
+
+			{% assign RELATED_POSTS_THRESHOLD = 3 %}
+			  {% assign related_post_count = 0 %}
+			  {% for post in site.posts %}
+			    {% if related_post_count == RELATED_POSTS_THRESHOLD %}
+			      {% break %}
+			    {% endif %}
+			    {% for tag in post.tags %}
+			      {% if page.tags contains tag %}
+			      	{% if page.title == post.title %}
+			      	{% break %}
+			      	{% endif %}
+					<li>
+						<a href="{{ post.url | prepend: site.url }}">
+							<span class="image-comments"><span class="disqus-comment-count" data-disqus-identifier="{{ site.url }}/{{ post.id }}">0 Comments</span></span>
+							{% if post.image %}
+							<img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}">
+							{% else %}
+							<img src="/assets/images/default.jpg" alt="{{ post.title }}" title="{{ post.title }}">
+							{% endif %}
+							<strong>{{ post.title | strip_html | truncate: 25 }}</strong>
+							<span class="a-txt">{{ post.date | date: '%B %d, %Y' }}</span>
+						</a>
+					</li>
+					{% assign related_post_count = related_post_count | plus: 1 %}
+					{% break %}
+			      {% endif %}
+			    {% endfor %}
+			  {% endfor %}
+
+			  {% assign posts_left = RELATED_POSTS_THRESHOLD | minus: related_post_count %}
+			  {% unless posts_left == 0 %}
+			  {% for post in site.related_posts %}
+				  {% if posts_left == 0 %}
+				    {% break %}
+				  {% endif %}
+
+				  {% assign already_related = false %}
+				  {% for tag in post.tags %}
+				    {% if page.tags contains tag %}
+				      {% assign already_related = true %}
+				      {% break %}
+				    {% endif %}
+				  {% endfor %}
+				  {% unless already_related %}
+				  {% assign posts_left = posts_left | minus: 1 %}
+					<li>
+						<a href="{{ post.url | prepend: site.url }}">
+							<span class="image-comments"><span class="disqus-comment-count" data-disqus-identifier="{{ site.url }}/{{ post.id }}">0 Comments</span></span>
+							{% if post.image %}
+							<img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}">
+							{% else %}
+							<img src="/assets/images/default.jpg" alt="{{ post.title }}" title="{{ post.title }}">
+							{% endif %}
+							<strong>{{ post.title | strip_html | truncate: 25 }}</strong>
+							<span class="a-txt">{{ post.date | date: '%B %d, %Y' }}</span>
+						</a>
+					</li>
+				  {% endunless %}
+				  {% endfor %}
+			  {% endunless %}
+
+			</ul>
+		</div>
+	</div>
+<!-- END .article-footer -->
+</div>
