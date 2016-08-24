@@ -1,0 +1,15 @@
+/*
+ Selection save and restore module for Rangy.
+ Saves and restores user selections using marker invisible elements in the DOM.
+
+ Part of Rangy, a cross-browser JavaScript range and selection library
+ http://code.google.com/p/rangy/
+
+ Depends on Rangy core.
+
+ Copyright 2012, Tim Down
+ Licensed under the MIT license.
+ Version: 1.2.3
+ Build date: 26 February 2012
+*/
+rangy.createModule("SaveRestore",function(e,n){function r(e,n){var r,t="selectionBoundary_"+ +new Date+"_"+(""+Math.random()).slice(2),o=d.getDocument(e.startContainer),a=e.cloneRange();return a.collapse(n),r=o.createElement("span"),r.id=t,r.style.lineHeight="0",r.style.display="none",r.className="rangySelectionBoundary",r.appendChild(o.createTextNode(l)),a.insertNode(r),a.detach(),r}function t(e,r,t,o){(e=(e||document).getElementById(t))?(r[o?"setStartBefore":"setEndBefore"](e),e.parentNode.removeChild(e)):n.warn("Marker element has been removed. Cannot restore selection.")}function o(e,n){return n.compareBoundaryPoints(e.START_TO_START,e)}function a(e,n){var r=(e||document).getElementById(n);r&&r.parentNode.removeChild(r)}e.requireModules(["DomUtil","DomRange","WrappedRange"]);var d=e.dom,l="\ufeff";e.saveSelection=function(t){t=t||window;var a=t.document;if(e.isSelectionValid(t)){var d,l,s=e.getSelection(t),c=s.getAllRanges(),i=[];c.sort(o);for(var m=0,u=c.length;u>m;++m)d=c[m],d.collapsed?(l=r(d,!1),i.push({markerId:l.id,collapsed:!0})):(l=r(d,!1),d=r(d,!0),i[m]={startMarkerId:d.id,endMarkerId:l.id,collapsed:!1,backwards:1==c.length&&s.isBackwards()});for(m=u-1;m>=0;--m)d=c[m],d.collapsed?d.collapseBefore((a||document).getElementById(i[m].markerId)):(d.setEndBefore((a||document).getElementById(i[m].endMarkerId)),d.setStartAfter((a||document).getElementById(i[m].startMarkerId)));return s.setRanges(c),{win:t,doc:a,rangeInfos:i,restored:!1}}n.warn("Cannot save selection. This usually happens when the selection is collapsed and the selection document has lost focus.")},e.restoreSelection=function(r,o){if(!r.restored){for(var a,d,l=r.rangeInfos,s=e.getSelection(r.win),c=[],i=l.length,m=i-1;m>=0;--m){if(a=l[m],d=e.createRange(r.doc),a.collapsed)if(a=(r.doc||document).getElementById(a.markerId)){a.style.display="inline";var u=a.previousSibling;u&&3==u.nodeType?(a.parentNode.removeChild(a),d.collapseToPoint(u,u.length)):(d.collapseBefore(a),a.parentNode.removeChild(a))}else n.warn("Marker element has been removed. Cannot restore selection.");else t(r.doc,d,a.startMarkerId,!0),t(r.doc,d,a.endMarkerId,!1);1==i&&d.normalizeBoundaries(),c[m]=d}1==i&&o&&e.features.selectionHasExtend&&l[0].backwards?(s.removeAllRanges(),s.addRange(c[0],!0)):s.setRanges(c),r.restored=!0}},e.removeMarkerElement=a,e.removeMarkers=function(e){for(var n,r=e.rangeInfos,t=0,o=r.length;o>t;++t)n=r[t],n.collapsed?a(e.doc,n.markerId):(a(e.doc,n.startMarkerId),a(e.doc,n.endMarkerId))}});
