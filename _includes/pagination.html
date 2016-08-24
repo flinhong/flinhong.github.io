@@ -1,0 +1,62 @@
+
+{% for post in paginator.posts %}
+<div class="article-promo">
+  <div class="article-photo">
+    <span class="article-image-out">
+      <span class="image-comments"><span><a href="{{ post.url | prepend: site.url }}#disqus_thread" data-disqus-identifier="{{ site.url }}/{{ post.id }}">0 Comments</a></span></span>
+      <span class="article-image single-icon">
+        <span class="nth1 strike-tooltip" title="Read Article">
+          <a href="{{ post.url | prepend: site.url }}"><i class="fa fa-eye"></i></a>
+        </span>
+        {% if post.image %}
+        <a href="{{ post.url | prepend: site.url }}"><img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" /></a>
+        {% elsif post.video %}
+        {{ post.video }}
+        {% elsif post.audio %}
+        {{ post.audio }}
+        {% else %}
+        <a href="{{ post.url | prepend: site.url }}"><img src="/assets/images/default.jpg" alt="{{ post.title }}" title="{{ post.title }}" /></a>
+        {% endif %}
+      </span>
+    </span>
+  </div>
+
+  <div class="article-content">
+    <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+    <div class="article-icons">
+      <a href="#" class="user-tooltip"><i class="fa fa-user"></i>{{ site.author }}</a>
+      <a href="#"><i class="fa fa-calendar"></i>{{ post.date | date: '%B %d, %Y' }}</a>
+    </div>
+    <p>{{ post.description | strip_html | truncatewords: 30 }}</p>
+    <a href="{{ post.url | prepend: site.url }}" class="defbutton"><i class="fa fa-reply"></i>Read full article</a>
+  </div>
+</div>
+
+<div class="clear-float do-the-split"></div>
+{% endfor %}
+
+<div class="pagination">
+{% if paginator.total_pages > 1 %}
+  {% if paginator.previous_page == 1 %}
+  <a href="{{ site.url }}/blog/" class="page-num"><i class="fa fa-chevron-left"></i></a>
+  {% elsif paginator.previous_page %}
+  <a href="{{ site.url }}/blog/page{{ paginator.previous_page }}" class="page-num"><i class="fa fa-chevron-left"></i></a>
+  {% else %}
+  <span class="page-num page-hidden"><i class="fa fa-chevron-left"></i></span>
+  {% endif %}
+  {% for page in (1..paginator.total_pages) %}
+  {% if page == paginator.page %}
+  <span class="page-num current">{{ page }}</span>
+  {% elsif page == 1 %}
+  <a href="{{ site.url }}/blog/" class="page-num">{{ page }}</a>
+  {% else %}
+  <a href="{{ site.url }}/blog/page{{ page }}" class="page-num">{{ page }}</a>
+  {% endif %}
+  {% endfor %}
+  {% if paginator.next_page %}
+  <a href="{{ site.url }}/blog/page{{ paginator.next_page }}" class="page-num"><i class="fa fa-chevron-right"></i></a>
+  {% else %}
+  <span class="page-num page-hidden"><i class="fa fa-chevron-right"></i></span>
+  {% endif %}
+{% endif %}
+</div>

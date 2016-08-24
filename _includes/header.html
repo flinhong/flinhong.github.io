@@ -1,0 +1,20 @@
+
+<header id="header">
+  <div id="menu-bottom">
+    {% include nav.html %}
+  </div>
+
+  <div class="wrapper">
+    <div class="header-breadcrumbs">
+      <h2 class="right">Keep recording...</h2>
+      <ul>
+        <li><a href="{{ site.url }}">Homepage</a></li>
+        <li><a href="{{ site.url }}/blog/">Blog</a></li>
+        {% if page.layout == 'post' %}
+        <li><a href="{{ site.url }}/categories/{{ page.category | downcase }}">{{ page.category }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+</header>

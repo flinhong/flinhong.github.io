@@ -1,1 +1,40 @@
-.robot_limbs_and_ears{fill:#503643}.robot_joints_and_belly{fill:#8bca9b}.error_code{fill:#ceddd1;font-size:322px}.robot_body{fill:#56bf9b}.robot_eye_whites{fill:#f3ecba}.robot_hands_feet{fill:#e64661}.robot_antenna{fill:#e64661}.robot_antenna_highlight{fill:#f2748d}.robot_eyes{fill:#e64661}.robot_eyes_highlight{fill:#f2748d}
+.robot_limbs_and_ears{
+	fill:#503643;
+}
+
+.robot_joints_and_belly{
+	fill:#8BCA9B;
+}
+
+.error_code{
+	fill:#CEDDD1;
+	font-size:322px;
+}
+
+.robot_body{
+	fill:#56BF9B;
+}
+
+.robot_eye_whites{
+	fill:#F3ECBA;
+}
+
+.robot_hands_feet{
+	fill:#E64661;
+}
+
+.robot_antenna{
+	fill:#E64661;
+}
+
+.robot_antenna_highlight{
+	fill:#F2748D;
+}
+
+.robot_eyes{
+	fill:#E64661;
+}
+
+.robot_eyes_highlight{
+	fill:#F2748D;
+}

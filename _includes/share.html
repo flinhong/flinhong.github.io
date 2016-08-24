@@ -1,0 +1,18 @@
+
+{% if site.deploy %}
+<p>Share this post:</p>
+<p><div class="fb-like" data-href="{{ page.url | prepend: site.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+ <a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-text="{{ page.description | truncatewords: 20 }}" data-url="{{ page.url | prepend: site.url }}" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- new ad -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7353085750925432"
+     data-ad-slot="3797151705"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endif %}

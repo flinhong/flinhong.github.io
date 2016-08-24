@@ -1,0 +1,22 @@
+
+<!--Firebase app-->
+<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB4_03lDxsfZN84-DgCikk3dPB6GnmQUIc",
+    authDomain: "www.flinhong.com",
+    databaseURL: "https://franks-blog.firebaseio.com",
+    storageBucket: "franks-blog.appspot.com",
+  };
+  firebase.initializeApp(config);
+  // Get a reference to the database service
+  var flinhong = firebase.database().ref('pageviews');
+  var current_url = decodeURI(window.location.pathname.replace(new RegExp('\\/|\\.', 'g'),"_"));
+  flinhong.child("totalviews").transaction(function (current_counter) {
+    return (current_counter || 0) + 1;
+  });
+  flinhong.child("posts/"+current_url).transaction(function (current_counter) {
+    return (current_counter || 0) + 1;
+  });
+</script>

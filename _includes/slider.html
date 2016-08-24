@@ -1,0 +1,59 @@
+
+<div id="slider">
+  <div id="slider-info">
+    <div class="padding-box">
+      <ul>
+        <li>
+          <h2><a href="{{ site.url }}/about/">Welcome to my blog!</a></h2>
+          <p>{{ site.description }}</p>
+          <a href="{{ site.url }}/about/" class="read-more-r">More about me</a>
+        </li>
+        {% for post in site.posts limit:3 %}
+        <li class="dis">
+          <h2><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h2>
+          <p>{{ post.description }}</p>
+          <a href="{{ post.url | prepend: site.url }}" class="read-more-r">Read this article</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <a href="javascript: featSelect(1);" id="featSelect-1" class="featured-select this-active">
+      <span class="w-bar" id="feat-countdown-bar-1">.</span>
+      <span class="w-coin" id="feat-countdown-1">0</span>
+      <img src="/assets/images/me.jpg" alt="My Photo" title="My Photo" />
+    </a>
+    {% for post in site.posts limit:1 %}
+    <a href="javascript: featSelect(2);" id="featSelect-2" class="featured-select">
+      <span class="w-bar" id="feat-countdown-bar-2">.</span>
+      <span class="w-coin" id="feat-countdown-2">0</span>
+      {% if post.image %}
+      <img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+      {% else %}
+      <img src="/assets/images/replace-1.jpg" alt="{{ post.title }}" title="{{ post.title }}" />
+      {% endif %}
+    </a>
+    {% endfor %}
+    {% for post in site.posts offset:1 limit:1 %}
+    <a href="javascript: featSelect(3);" id="featSelect-3" class="featured-select">
+      <span class="w-bar" id="feat-countdown-bar-3">.</span>
+      <span class="w-coin" id="feat-countdown-3">0</span>
+      {% if post.image %}
+      <img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+      {% else %}
+      <img src="/assets/images/replace-2.jpg" alt="{{ post.title }}" title="{{ post.title }}" />
+      {% endif %}
+    </a>
+    {% endfor %}
+    {% for post in site.posts offset:2 limit:1 %}
+    <a href="javascript: featSelect(4);" id="featSelect-4" class="featured-select">
+      <span class="w-bar" id="feat-countdown-bar-4">.</span>
+      <span class="w-coin" id="feat-countdown-4">0</span>
+      {% if post.image %}
+      <img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+      {% else %}
+      <img src="/assets/images/replace-3.jpg" alt="{{ post.title }}" title="{{ post.title }}" />
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</div>

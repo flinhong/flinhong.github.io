@@ -1,0 +1,83 @@
+
+<!-- BEGIN #sidebar -->
+<aside id="sidebar" class="post-sidebar">
+
+	<!-- BEGIN .panel -->
+	<div class="panel moved">
+		<h2>Social Connects</h2>
+		<div class="panel-content socialize">
+
+			<a href="http://www.facebook.com/flinhong" target="_blank" class="strike-tooltip s-fb" title="Visit Facebook"><i class="fa fa-facebook"></i></a>
+			<a href="https://twitter.com/flinhong" target="_blank" class="strike-tooltip s-tw" title="Visit Twitter"><i class="fa fa-twitter"></i></a>
+			<a href="https://github.com/flinhong" target="_blank" class="strike-tooltip s-gh" title="Visit GitHub"><i class="fa fa-github"></i></a>
+			<a href="http://weibo.com/linhong" target="_blank" class="strike-tooltip s-wb" title="Visit Weibo"><i class="fa fa-weibo"></i></a>
+			<a href="https://www.linkedin.com/in/frankhl" target="_blank" class="strike-tooltip s-lk" title="Visit Linkedin"><i class="fa fa-linkedin"></i></a>
+
+		</div>
+	<!-- END .panel -->
+	</div>
+
+	{% if page.title != 'Search' %}
+	<div class="panel moved">
+		<div class="panel-content">
+			<form action="/search/" target="_blank" method="get">
+				<input type="text" placeholder="Type and press enter..." name="q">
+			</form>
+		</div>
+	</div>
+	{% endif %}
+
+	{% if page.toc %}
+	<!-- BEGIN .panel -->
+	<div class="panel toc-fix">
+		<h2>Table of Contents</h2>
+		<div class="panel-content">
+			<div id="toc" class="toc-menu"></div>
+		</div>
+	<!-- END .panel -->
+	</div>
+	{% endif %}
+
+	<!-- BEGIN .panel -->
+	<div class="panel">
+		<h2>Recent Posts</h2>
+		<div class="top-right"><a href="{{ site.url }}/blog/">View all</a></div>
+		<div class="panel-content">
+
+			<div class="d-articles">
+				{% for post in site.posts offset:3 limit: 5 %}
+				<div class="item">
+					<div class="item-header">
+						{% if post.image %}
+						<a href="{{ post.url | prepend: site.url }}"><img src="{{ post.image }}" alt="{{ post.title }}" /></a>
+						{% else %}
+						<a href="{{ post.url | prepend: site.url }}"><img src="/assets/images/default.jpg" alt="{{ post.title }}" /></a>
+						{% endif %}
+					</div>
+					<div class="item-content">
+						<h4><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h4>
+						<p>{{ post.date | date: '%B %d, %Y' }}</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+		</div>
+	<!-- END .panel -->
+	</div>
+
+	{% include recent-comments.html %}
+
+	<!-- BEGIN .panel -->
+	<div class="panel moved">
+		<h2>Tag Cloud</h2>
+		<div class="panel-content">
+			<div class="tagcloud">
+				{% for tag in site.tags %}<a href="{{ site.url }}/tags/#{{ tag | first }}">{{ tag | first }}</a>{% endfor %}
+			</div>
+		</div>
+	<!-- END .panel -->
+	</div>
+
+<!-- END #sidebar -->
+</aside>
