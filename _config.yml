@@ -61,7 +61,7 @@ feed:
   path: feed.xml
 
 message: Like this theme? Fork it!
-messageurl: https://github.com/flinhong/blog/tree/deploy
+messageurl: https://github.com/flinhong/flinhong.github.io/tree/jekyll
 # covers: true
 deploy: true
 reading: 东方历史评论（第1辑）
